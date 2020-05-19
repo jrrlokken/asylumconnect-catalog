@@ -5,7 +5,9 @@ import config from '../config';
 import {localeTagMap} from './locale';
 import serviceAreaCoverage from './serviceAreaCoverage.json';
 
-export const CATALOG_API_URL = `${config.apiDomain}${config.apiBasePath}`;
+// export const CATALOG_API_URL = `${config.apiDomain}${config.apiBasePath}`;
+export const CATALOG_API_URL = `http://localhost:8080/v1`;
+
 // /* Local deloy */ export const CATALOG_API_URL = `http://localhost:8080/v1`;
 
 const jwt = localStorage.getItem('jwt');
@@ -61,6 +63,7 @@ export const catalogPost = (path, body, options) => {
 
 const getAreaId = (location) => location.toLowerCase().split(' ').join('-');
 
+// Get Organizations
 export const fetchOrganizations = (params) => {
   const {
     city,
@@ -69,12 +72,16 @@ export const fetchOrganizations = (params) => {
     name,
     owner,
     page,
+    nearLatLng,
     selectedFilters,
     selectedResourceTypes,
     state,
   } = params || {};
   const tagLocale = localeTagMap[locale] || '';
   const query = {};
+
+  console.log('params in fetchOrganization');
+  console.log(params);
 
   if (ids) {
     query.ids = ids;
@@ -151,8 +158,15 @@ export const fetchOrganizations = (params) => {
     query.tagLocale = tagLocale;
     query.tags = selectedResourceTypes;
   }
+  if (Object.values(nearLatLng).length > 0) {
+    query.lat = nearLatLng['lat'];
+    query.lng = nearLatLng['lng'];
+  }
 
   const queryString = qs.stringify(query, {arrayFormat: 'comma'});
+
+  console.log('helloooooooo');
+  console.log(queryString);
 
   return catalogGet(`/organizations?${queryString}`);
 };
@@ -248,7 +262,6 @@ export const updateUser = (user, update) => {
 };
 
 export const updateUserPassword = (user, password) => {
-
   return catalogPatch(`/users/${user._id}/password`, {password})
     .then(() => ({}))
     .catch((err) => err);

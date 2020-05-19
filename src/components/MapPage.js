@@ -283,6 +283,8 @@ class MapPage extends React.Component {
   }
 
   handleSearchButtonClick() {
+
+    console.log("handlesearch")
     this.setState({searchDisabled: true});
 
     const redirect = ({latLng, state}) => {
@@ -351,6 +353,8 @@ class MapPage extends React.Component {
     }
   }
 
+
+  //search input results
   fetchSearchResults(nextPage) {
     if ((nextPage && this.state.endOfList) || this.state.searching) {
       return;
@@ -419,6 +423,7 @@ class MapPage extends React.Component {
             ),
             state,
           };
+        
 
           this.setState(nextState);
 

@@ -249,7 +249,7 @@ class ResourceListItem extends React.Component {
                       md={6}
                       className={'pull-right ' + pullLeft}
                     >
-                      <RatingAndReviews rating={rating} total={commentCount} />
+                      {/* <RatingAndReviews rating={rating} total={commentCount} /> */}
                     </Grid>
                   )}
                 </Grid>
@@ -444,7 +444,7 @@ class ResourceListItem extends React.Component {
                     md={6}
                     className={'pull-right ' + pullLeft}
                   >
-                    <RatingAndReviews rating={rating} total={commentCount} />
+                    {/* <RatingAndReviews rating={rating} total={commentCount} /> */}
                   </Grid>
                 </Grid>
               </Grid>

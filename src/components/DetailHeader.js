@@ -53,7 +53,7 @@ const DetailHeader = ({
               md={5}
               className={isMobile ? classes.mobileRatingSummary : 'pull-right'}
             >
-              <RatingAndReviews total={totalRatings} rating={rating} />
+              {/* <RatingAndReviews total={totalRatings} rating={rating} /> */}
             </Grid>
           ) : null}
         </Grid>
